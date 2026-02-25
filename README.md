@@ -6,12 +6,6 @@ Built with Next.js (App Router), TypeScript, and React.
 
 ---
 
-## Live Demo
-
-(Add your deployed link here after hosting)
-
----
-
 ## Features
 
 - Fetch random rejection reasons from an external API
