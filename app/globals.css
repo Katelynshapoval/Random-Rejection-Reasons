@@ -10,8 +10,16 @@ body {
   flex-direction: column;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   background-color: #121212;
+  background-image: radial-gradient(
+    circle at bottom center,
+    rgba(0, 255, 0, 0.6) 0%,
+    rgba(0, 255, 0, 0.4) 20%,
+    rgba(0, 255, 0, 0.2) 40%,
+    rgba(0, 255, 0, 0) 60%
+  );
   color: white;
   height: 100vh;
+  padding: 2rem;
 }
 
 .message {
@@ -86,21 +94,18 @@ button {
   cursor: pointer;
 }
 
+#reason {
+  width: 10rem;
+}
+
 #copy {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.copyIcon {
+.icon {
   font-size: 1.25rem;
-  color: rgb(26, 89, 28);
-}
-
-.copyIcon {
-  transition:
-    transform 0.2s ease,
-    opacity 0.2s ease;
 }
 
 button:disabled {

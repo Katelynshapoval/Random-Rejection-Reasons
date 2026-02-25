@@ -9,17 +9,22 @@ type noAsAServiceResponse = {
   reason: string;
 };
 
+type Message = {
+  message: string;
+  type: "copy" | "error" | null;
+};
+
 export default function Home() {
   const [reason, setReason] = useState<string>("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<Message>({ message: "", type: null });
   const [copied, setCopied] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
+  const [updateIcon, setUpdateIcon] = useState(false);
 
   // Fetches the rejection reason
   async function fetchReason() {
     setLoading(true);
-    setMessage("");
 
     try {
       const res = await fetch("https://naas.isalman.dev/no", {
@@ -33,7 +38,10 @@ export default function Home() {
       const data: noAsAServiceResponse = await res.json();
       setReason(data.reason);
     } catch (err) {
-      setMessage(err instanceof Error ? err.message : "Something went wrong");
+      setMessage({
+        message: err instanceof Error ? err.message : "Something went wrong",
+        type: "error",
+      });
     } finally {
       setLoading(false);
     }
@@ -47,8 +55,8 @@ export default function Home() {
   return (
     <>
       {showMessage && (
-        <div className={`message ${copied ? "good" : "bad"}`}>
-          {message}{" "}
+        <div className={`message ${message.type != "error" ? "good" : "bad"}`}>
+          {message.message}{" "}
           {copied ? (
             <IoIosCheckmarkCircleOutline className="copyIcon" />
           ) : (
@@ -74,18 +82,22 @@ export default function Home() {
               onClick={() => {
                 navigator.clipboard.writeText(reason);
                 setCopied(true);
-                setMessage("Copied!");
+                setMessage({ message: "Copied!", type: "copy" });
                 setShowMessage(true);
+                setUpdateIcon(true);
+                setTimeout(() => {
+                  setUpdateIcon(false);
+                }, 800);
                 setTimeout(() => {
                   setCopied(false);
                   setShowMessage(false);
                 }, 3000);
               }}
             >
-              {copied ? (
-                <IoIosCheckmarkCircleOutline id="copyIcon" />
+              {updateIcon ? (
+                <IoIosCheckmarkCircleOutline className="icon" />
               ) : (
-                <IoMdCopy className="copyIcon" />
+                <IoMdCopy className="icon" />
               )}
             </button>
           </div>
