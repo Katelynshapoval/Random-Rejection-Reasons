@@ -69,7 +69,7 @@ body {
 
 .main {
   position: relative;
-  top: 35%;
+  top: 30%;
   text-align: center;
 }
 
@@ -79,6 +79,8 @@ h1 {
 
 p {
   margin-bottom: 1rem;
+  margin-top: 2rem;
+  height: 50;
 }
 
 .buttons {
@@ -92,6 +94,7 @@ button {
   border: none;
   padding: 5px;
   cursor: pointer;
+  color: black;
 }
 
 #reason {
@@ -106,6 +109,7 @@ button {
 
 .icon {
   font-size: 1.25rem;
+  color: black;
 }
 
 button:disabled {
