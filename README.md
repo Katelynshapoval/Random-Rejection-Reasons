@@ -42,6 +42,6 @@ Rate limit: 120 requests per minute per IP
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/Random-Rejection-Reasons.git
+git clone https://github.com/Katelynshapoval/Random-Rejection-Reasons.git
 cd Random-Rejection-Reasons
 ```
